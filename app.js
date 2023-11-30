@@ -1,6 +1,7 @@
 const express = require('express');
 const { buildSchema } = require('graphql');
 const {createHandler} = require('graphql-http/lib/use/express');
+const expressPlayground = require('graphql-playground-middleware-express').default;
 
 const app = express()
 
@@ -19,8 +20,8 @@ var graphRoot = {
 }
 
 app.use("/graphql",createHandler({schema: schema,rootValue : graphRoot}));
-
+app.get('/playground',expressPlayground({endpoint : '/graphql'}));
 
 app.listen(3000, () => {
-  console.log('listening on port 3000')
+  console.log('listening on http://localhost:3000/playground');
 })
