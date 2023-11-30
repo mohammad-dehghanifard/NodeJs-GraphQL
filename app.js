@@ -7,16 +7,37 @@ const app = express()
 
 const schema = buildSchema(`
 type Query {
-    username: String,
-    age : Int,
-    email: String,
+    products : [Product]
+    orders : [Order]
+}
+
+type Product {
+    id : ID!
+    title : String
+    description : String
+    price : Float
+    review : [Review]
+}
+
+type Review {
+    rating : Int!
+    comment : String
+}
+
+type Order {
+    date : String!
+    totalPrice : Float
+    items : [OrderItem]
+}
+
+type OrderItem {
+    product : Product!
+    quantity : Int!
 }
 `);
 
-var graphRoot = {
-    username: "mohammad",
-    age : 25,
-    email: "test@example.com",
+var shoapRoot = {
+   // TODO: implement test data
 }
 
 app.use("/graphql",createHandler({schema: schema,rootValue : graphRoot}));
