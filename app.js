@@ -11,7 +11,20 @@ const {makeExecutableSchema} = require("@graphql-tools/schema");
 
 const schemaArray = loadFilesSync(path.join(__dirname,"**/*.graphql"));
 
-const schema = makeExecutableSchema({typeDefs: schemaArray});
+const schema = makeExecutableSchema(
+    {
+        typeDefs: schemaArray,
+        resolvers : {
+                Query :{
+                    products : (parent,args,context,info) => {
+                        return parent.products;
+                    },
+                    orders : (parent,args,context,info) => {
+                        return parent.orders;
+                    }
+                }
+        }
+    });
 
 var shoapRoot = {products : productList,orders : orderList}
 
