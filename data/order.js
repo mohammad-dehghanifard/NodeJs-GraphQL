@@ -1,4 +1,4 @@
-module.exports = [
+const orderList= [
     {
         date : '2022-06-18',
         totalPrice : 236.84,
@@ -15,3 +15,5 @@ module.exports = [
         ]
     }
 ]
+
+exports.getAllOrder = () => orderList;

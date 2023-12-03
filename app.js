@@ -10,26 +10,17 @@ const {makeExecutableSchema} = require("@graphql-tools/schema");
 
 
 const schemaArray = loadFilesSync(path.join(__dirname,"**/*.graphql"));
+const resolversArray = loadFilesSync(path.join(__dirname,"**/*.resolvers.js")); 
 
 const schema = makeExecutableSchema(
     {
         typeDefs: schemaArray,
-        resolvers : {
-                Query :{
-                    products : (parent,args,context,info) => {
-                        return parent.products;
-                    },
-                    orders : (parent,args,context,info) => {
-                        return parent.orders;
-                    }
-                }
-        }
+        resolvers : resolversArray
     });
 
-var shoapRoot = {products : productList,orders : orderList}
 
 const app = express();
-app.use("/graphql",createHandler({schema: schema,rootValue : shoapRoot}));
+app.use("/graphql",createHandler({schema: schema}));
 app.get('/playground',expressPlayground({endpoint : '/graphql'}));
 
 app.listen(3000, () => {
