@@ -29,6 +29,7 @@ const productList =  [
     }
 ]
 
+// actions
 exports.getAllProducts = () => productList;
 
 exports.filterProductsPrice = (min,max) => {
@@ -41,4 +42,12 @@ exports.addNewProduct = (id,title,description,price) => {
     const newProduct = {id,title,description,price};
     productList.push(newProduct);
     return newProduct;
+}
+
+exports.selectProductById = (id) =>{
+    console.log(id);
+
+    return productList.find(product =>{
+        return product.id === id;
+    });
 }

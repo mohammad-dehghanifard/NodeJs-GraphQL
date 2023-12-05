@@ -1,6 +1,7 @@
 type Query {
      products : [Product],
-     filterProductPrice(min : Float!,max : Float!) : [Product]
+     filterProductPrice(min : Float!,max : Float!) : [Product],
+     getProductById(id:ID!) : Product
       }
 
 type Mutation{
