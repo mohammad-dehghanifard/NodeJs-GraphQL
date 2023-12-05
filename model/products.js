@@ -45,8 +45,6 @@ exports.addNewProduct = (id,title,description,price) => {
 }
 
 exports.selectProductById = (id) =>{
-    console.log(id);
-
     return productList.find(product =>{
         return product.id === id;
     });
