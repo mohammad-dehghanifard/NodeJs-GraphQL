@@ -1,4 +1,4 @@
-const {getAllOrder} = require("../data/order");
+const {getAllOrder} = require("../model/order");
 
 module.exports = {
     Query : {

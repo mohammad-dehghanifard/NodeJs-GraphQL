@@ -16,7 +16,19 @@ const productList =  [
         title: "Hat 3 product",
         description : "this product is hat 3",
         price : 12.39
+    },
+    {
+        id: "Hat4",
+        title: "Hat 4 product",
+        description : "this product is hat 3",
+        price : 15.39
     }
 ]
 
 exports.getAllProducts = () => productList;
+
+exports.filterProductsPrice = (min,max) => {
+    return productList.filter(product =>{
+        return product.price > min && product.price < max;
+    })
+}
